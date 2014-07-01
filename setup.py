@@ -113,6 +113,16 @@ else:
 with open('README.rst') as f:
     readme = f.read()
 
+# These are the runtime requirements.
+reqs = ['affine>=1.0',
+        'numpy>=1.7',
+        'setuptools'
+      ]
+
+# And Python 3.4 enums.
+if sys.version_info < (3, 4):
+    reqs.append('enum34')
+
 setup(name='rasterio',
       version=version,
       description=(

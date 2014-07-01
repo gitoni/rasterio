@@ -3,6 +3,7 @@
 #
 
 from collections import namedtuple
+from enum import IntEnum
 import logging
 
 import numpy as np
@@ -40,14 +41,15 @@ cdef extern from "gdalwarper.h" nogil:
                                 double dfProgressScale=1.0)
 
 
-RESAMPLING = namedtuple('RESAMPLING', [
-                'nearest', 
-                'bilinear', 
-                'cubic', 
-                'cubic_spline', 
-                'lanczos', 
-                'average', 
-                'mode'] )(*list(range(7)))
+class RESAMPLING(IntEnum):
+    nearest=0 
+    bilinear=1
+    cubic=2 
+    cubicspline=3 
+    lanczos=4 
+    average=5 
+    mode=6
+
 
 log = logging.getLogger('rasterio')
 class NullHandler(logging.Handler):
